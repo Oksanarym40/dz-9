@@ -50,6 +50,12 @@ public class Person {
         public boolean isRetired() {
             return (this.age >= (this instanceof Woman ? 60 : 65));
         }
+         public void setPartner(Person partner) {
+        this.partner = partner;
+        if (partner != null) {
+            partner.partner = this;
+        }
+         }
 
         public void registerPartnership(Person partner) {
             this.partner = partner;
@@ -61,8 +67,10 @@ public class Person {
 
         public void deregisterPartnership(boolean returnToPreviousLastName) {
             this.partner = null;
+                partner.partner = null;
             if (this instanceof Woman && returnToPreviousLastName) {
                 this.lastName = this.partner.getLastName();
             }
+                partner = null;
         }
     }
